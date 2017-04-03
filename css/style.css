@@ -1,9 +1,15 @@
-
 body{
   background-color: red;
   margin-top: 20px;
 }
-#fullback {
+
+
+
+
+
+
+
+.bg {
   width: 700px;
   height: 500px;
   position: relative;
@@ -14,8 +20,8 @@ body{
   overflow: hidden;
 
 }
-#duck {
 
+.duck {
   background-image: url('../img/duck.png');
   width: 80px;
   height: 80px;
@@ -23,5 +29,17 @@ body{
   z-index: 10;
   background-repeat: no-repeat;
   background-size: contain;
+  left : 650px;
+  top: 150px;
+}
 
+.saus {
+  background-image: url('../img/roast.png');
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
 }

@@ -1,3 +1,27 @@
-h1 {
-  background-color: blue;
+
+body{
+  background-color: red;
+  margin-top: 20px;
+}
+#fullback {
+  width: 700px;
+  height: 500px;
+  position: relative;
+  background-image:url('../img/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  overflow: hidden;
+
+}
+#duck {
+
+  background-image: url('../img/duck.png');
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size: contain;
+
 }

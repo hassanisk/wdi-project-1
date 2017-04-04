@@ -1,13 +1,12 @@
-var score = 0;
 
 
 $(function(){
   animateDiv();
-  $('#target').click(function(){
-    score = score + 1 ;
-    $('score').HTML = score;
-    $(this).hide();
+  $('.duck').click(function(){
+    $('.duck').hide();
   });
+
+
 });
 
 
@@ -22,11 +21,15 @@ function makeNewPosition(){
 }
 
 function animateDiv(){
-
+  // $('body').append('<div class="duck"></div>');
   var newq = makeNewPosition();
   var oldq = $('.duck').offset();
   var speed = calcSpeed([oldq.top, oldq.left], newq);
+
   $('.duck').animate({ top: newq[0], left: newq[1] }, speed, function(){
+    // $('body').append('<div class="duck"></div>');
+
+
 
     animateDiv();
   });
@@ -48,3 +51,10 @@ function calcSpeed(prev, next) {
   return speed;
 
 }
+
+// $('#audio').click(function() {
+//   var audio =$('$audio');
+//   audio.play();
+// });
+//
+// $('#audio').click();

@@ -1,15 +1,9 @@
 body{
-  background-color: red;
+  background-color: black;
   margin-top: 20px;
 }
-
-
-
-
-
-
-
 .bg {
+  border-radius: 20px;
   width: 700px;
   height: 500px;
   position: relative;
@@ -18,9 +12,8 @@ body{
   background-position: center;
   margin: auto;
   overflow: hidden;
-
+  cursor:url('../img/crosshair.png'), auto;
 }
-
 .duck {
   background-image: url('../img/duck.png');
   width: 80px;
@@ -43,38 +36,33 @@ body{
   background-size: contain;
   display: none;
 }*/
-
 .score{
-  color: black;
-  border: 2px solid black;
+  color: white;
+  border: 2px solid white;
   padding: 10px;
   width:30px;
 }
-
 .tree{
   background-image: url('../img/tree.png');
-  width: 200px;
+  width: 160px;
   height: 200px;
   position: absolute;
   z-index: 10;
   background-repeat: no-repeat;
   background-size:contain;
-
 }
 #tree1{
   left : 300px;
-  top: 100px;
-
+  top: 117px;
 }
 #tree2{
   left : 500px;
-  top: 100px;
+  top: 120px;
 }
 #tree3{
   left : 100px;
-  top: 200px;
+  top: 107px;
 }
-
 .grass{
   background-image: url('../img/grass.png');
   width: 700px;
@@ -84,7 +72,32 @@ body{
   background-repeat: no-repeat;
   background-size:contain;
   left: 0;
-  top: 400px;
+  top: 381px;
+}
+h5{
+position: absolute;
+padding-left: 10px;
+color:white;
+}
+.bullet{
+  background-image: url('../img/bullet.png');
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size:contain;
+  position: absolute;
+}
+.main{
+  display: inline-block;
+  background-color: white;
+}
 
 
+.links{
+  background-color: blue;
+  position: absolute;
+}
+h1 {
+  color: red;
+  left: 50%;
 }

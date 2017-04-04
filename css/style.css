@@ -1,6 +1,7 @@
 body{
-  background-color: black;
+  background-color: red;
   margin-top: 20px;
+  text-align: center;
 }
 .bg {
   border-radius: 20px;
@@ -97,7 +98,14 @@ color:white;
   background-color: blue;
   position: absolute;
 }
-h1 {
-  color: red;
-  left: 50%;
+
+.startButton{
+  font-family: 'VT323', monospace;
+  width : 100px;
+  height : 20px;
+
+}
+
+hover.startButton{
+  background-color: blue;
 }

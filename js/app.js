@@ -1,14 +1,29 @@
 
-
+let numHits = 0;
 $(function(){
-  animateDiv();
-  $('.duck').click(function(){
-    $('.duck').hide();
-  });
-
-
+  $('.startButton').on('click', animateDiv);
 });
 
+
+
+function hitDuck(){
+  numHits += 1;
+  $('.score').HTML(`${numHits}`);
+}
+
+
+
+
+function addGuns() {
+
+  $('.duck').click(function(){
+
+    $(this).remove();
+
+    console.log('Clicked that duck yo');
+
+  });
+}
 
 function makeNewPosition(){
   var height = $(window).height()-100;
@@ -21,20 +36,32 @@ function makeNewPosition(){
 }
 
 function animateDiv(){
-  // $('body').append('<div class="duck"></div>');
+  console.log('start');
+  var noOfDucks = 5000;
+  var duckIntervals = setInterval(createDuck, 1000);
+  setTimeout(function() {
+    clearInterval(duckIntervals);
+  }, noOfDucks);
+}
+
+function createDuck(){
+  var newDuck = $('<div class="duck" id="target"></div>');
+  $('.bg').append(newDuck).find(newDuck).css({'position': 'absolute', 'z-index': '3'});
+  animateDuck();
+  addGuns();
+
+}
+
+function animateDuck() {
   var newq = makeNewPosition();
+  console.log(newq);
   var oldq = $('.duck').offset();
   var speed = calcSpeed([oldq.top, oldq.left], newq);
-
-  $('.duck').animate({ top: newq[0], left: newq[1] }, speed, function(){
-    // $('body').append('<div class="duck"></div>');
-
-
-
-    animateDiv();
+  $('.duck').animate({ top: newq[0], left: newq[1] }, {
+    duration: speed,
+    complete: animateDuck
   });
-
-
+  // console.log('duck animated');
 }
 
 function calcSpeed(prev, next) {
@@ -44,13 +71,15 @@ function calcSpeed(prev, next) {
 
   var greatest = x > y ? x : y;
 
-  var speedModifier = 0.2;
+  var speedModifier = 0.1;
 
   var speed = Math.ceil(greatest/speedModifier);
 
   return speed;
 
 }
+
+
 
 // $('#audio').click(function() {
 //   var audio =$('$audio');

@@ -33,7 +33,7 @@ body{
   top: 150px;
 }
 
-.saus {
+/*.saus {
   background-image: url('../img/roast.png');
   width: 80px;
   height: 80px;
@@ -42,4 +42,49 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
   display: none;
+}*/
+
+.score{
+  color: black;
+  border: 2px solid black;
+  padding: 10px;
+  width:30px;
+}
+
+.tree{
+  background-image: url('../img/tree.png');
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size:contain;
+
+}
+#tree1{
+  left : 300px;
+  top: 100px;
+
+}
+#tree2{
+  left : 500px;
+  top: 100px;
+}
+#tree3{
+  left : 100px;
+  top: 200px;
+}
+
+.grass{
+  background-image: url('../img/grass.png');
+  width: 700px;
+  height: 200px;
+  position: absolute;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size:contain;
+  left: 0;
+  top: 400px;
+
+
 }

@@ -1,15 +1,17 @@
-$(function(){
+var score = 0;
 
+
+$(function(){
   animateDiv();
   $('#target').click(function(){
+    score = score + 1 ;
+    $('score').HTML = score;
     $(this).hide();
   });
 });
 
 
 function makeNewPosition(){
-
-  // Get viewport dimensions (remove the dimension of the div)
   var height = $(window).height()-100;
   var width = $(window).width() - 100;
 
@@ -17,7 +19,6 @@ function makeNewPosition(){
   var nwidth = Math.floor(Math.random() * width);
 
   return [nheight,nwidth];
-
 }
 
 function animateDiv(){
@@ -25,10 +26,8 @@ function animateDiv(){
   var newq = makeNewPosition();
   var oldq = $('.duck').offset();
   var speed = calcSpeed([oldq.top, oldq.left], newq);
-  // $('duck').style.left =  '650px';
-  // $('duck').style.top= '200px';
-
   $('.duck').animate({ top: newq[0], left: newq[1] }, speed, function(){
+
     animateDiv();
   });
 
@@ -42,13 +41,10 @@ function calcSpeed(prev, next) {
 
   var greatest = x > y ? x : y;
 
-  var speedModifier = 1;
+  var speedModifier = 0.2;
 
   var speed = Math.ceil(greatest/speedModifier);
 
   return speed;
-
-}
-function gameLoop(){
 
 }

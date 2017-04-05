@@ -1,23 +1,20 @@
 let playerScore = 0;
+let MissingShot = 10;
+
+
+
 
 
 $(function (){
-
-
   $('.startButton').on('click', animateDiv);
-  // $('#target').click(function(){
-  //   var score = parseInt($('#score').html);
-  //   console.log('score1');
-  //   score++;
-  //   console.log(score++);
-  //   $('#score').html = score;
-  //   console.log(score);
-  //
-  // });
-
+  $('.restart').on('click', restartButton);
   $('.bg').on('click', '.duck', duckClicked);
-
 });
+
+
+function restartButton(){
+  location.reload();
+}
 
 
 function duckClicked() {
@@ -31,13 +28,19 @@ function appendScore() {
   $('.score').text(playerScore);
 }
 
+function shotMiss(){
+  MissingShot--;
+  console.log('ammo used');
+  $('.shotTotal').text(MissingShot);
+  if (MissingShot===0){
+    $('.tree').css({'display': 'none'});
+    $('.duck').css({'display': 'none'});
+    $('.bg').off('click', '.duck', duckClicked);
+    $('.lost').css({'display': 'block','z-index': '20'});
+    $('.shotTotal').css({'display': 'none'});
+  }
 
-
-
-
-// function addGuns() {
-//   $('.duck').click();
-// }
+}
 
 function makeNewPosition(){
   var height = $(window).height()-100;
@@ -50,6 +53,7 @@ function makeNewPosition(){
 }
 
 function animateDiv(){
+  $('.bg').on('click',shotMiss);
   console.log('start');
   var noOfDucks = 5000;
   var duckIntervals = setInterval(createDuck, 1000);
@@ -94,11 +98,7 @@ function calcSpeed(prev, next) {
 }
 
 
-// var score = 0 ;
-function score1() {
-  score++;
-  $('#score').text(`${score}`);
-}
+
 // $('#audio').click(function() {
 //   var audio =$('$audio');
 //   audio.play();

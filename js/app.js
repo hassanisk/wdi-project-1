@@ -1,106 +1,140 @@
 var game = game || {};
 
 let playerScore = 0;
-let MissingShot = 10;
-
+let missedShot  = 10;
+let ufoIntervals;
+const intro     = new Audio('./audio/intro.mp3');
+const laser     = new Audio('./audio/laser.mp3');
+const start     = new Audio('./audio/start.wav');
+const explosion = new Audio('./audio/explosion.mp3');
+const ufo       = new Audio('./audio/ufo.mp3');
+const fail      = new Audio('./audio/fail.mp3');
+const blast      = new Audio('./audio/blast.mp3');
 
 $(function(){
-  var intro = new Audio('./audio/intro.mp3');
   intro.play();
-  $('.startButton').on('click', animateDiv);
-  $('.restart').on('click', restartButton);
-  $('.bg').on('click', '.duck', duckClicked);
-
+  addEventListeners();
 });
-function restartButton(){
-  location.reload();
+
+function addEventListeners() {
+  $('.restart').on('click', restartButton);
+  $('.bg').on('click', '.Ufo', UfoClicked);
+  $('.bg').on('click', shotMiss);
+  $('.buttonNuke').on('click', nuke);
+  $('.startButton').on('click', animateDiv);
+  $('speed').on('click');
 }
-function duckClicked() {
+
+function restartButton(){
+  intro.play();
+  fail.pause();
+  start.pause();
+  explosion.pause();
+  ufo.pause();
+  $('.planet').css({'display': 'block'});
+  $('.Ufo').css({'display': 'none'});
+  $('.shotTotal').html('10');
+  $('.score').html('0');
+  $('.lost').css({'display': 'block'});
+  $('.shotTotal').css({'display': 'block'});
+  $('.bomb').css({'display': 'none'});
+  $('.lost').css({'display': 'none'});
+  $('.grass').css({'display': 'block'});
+  clearInterval(ufoIntervals);
+  missedShot  = 10;
+  playerScore = 0;
+  // $('.restart').on('click', restartButton);
+  $('.bg').off('click', '.Ufo', UfoClicked);
+  $('.bg').off('click', shotMiss);
+  // $('.buttonNuke').on('click', nuke);
+  $('.startButton').off('click', animateDiv);
+  // $('speed').on('click');
+  addEventListeners();
+}
+
+function UfoClicked() {
+  blast.play();
   $(this).remove();
   appendScore();
-  console.log('Clicked that duck yo');
+  console.log('Clicked that Ufo yo');
 }
-
 
 function appendScore() {
   playerScore++;
   $('.score').text(playerScore);
-
 }
+
 function shotMiss(){
-  MissingShot--;
+  missedShot--;
   console.log('ammo used');
-  var shotgun = new Audio('./audio/shot.mp3');
-  shotgun.play();
-  $('.shotTotal').text(MissingShot);
-  if (MissingShot===0){
-    var fail = new Audio('./audio/fail.mp3');
+  laser.play();
+  $('.shotTotal').text(missedShot);
+  if (missedShot===0) {
     fail.play();
-    $('.tree').css({'display': 'none'});
-    $('.duck').css({'display': 'none'});
-    $('.bg').off('click', '.duck', duckClicked);
+    $('.planet').css({'display': 'none'});
+    $('.Ufo').css({'display': 'none'});
+    $('.bg').off('click', '.Ufo', UfoClicked);
     $('.lost').css({'display': 'block','z-index': '20'});
     $('.shotTotal').css({'display': 'none'});
+    clearInterval(ufoIntervals);
   }
 }
-function makeNewPosition(){
-  var height = $(window).height()-100;
-  var width = $(window).width() - 100;
-  var nheight = Math.floor(Math.random() * height);
-  var nwidth = Math.floor(Math.random() * width);
-  return [nheight,nwidth];
 
+function makeNewPosition(){
+  const height  = $(window).height()-100;
+  const width   = $(window).width() - 100;
+  const nheight = Math.floor(Math.random() * height);
+  const nwidth  = Math.floor(Math.random() * width);
+  return [nheight,nwidth];
 }
 
 function animateDiv(){
-  var start = new Audio('./audio/start.wav');
+  intro.pause();
   start.play();
-  $('.bg').on('click',shotMiss);
-  var noOfDucks = 10000;
-  var duckIntervals = setInterval(createDuck, 1000);
-  setTimeout(function() {
-    clearInterval(duckIntervals);
-  }, noOfDucks);
+  console.log('clicked');
+  // $('.bg').on('click', shotMiss);
+  ufoIntervals = setInterval(createUfo, 1000);
 }
-function createDuck(){
-  var newDuck = $('<div class="duck" id="target"></div>');
-  $('.bg').append(newDuck).find(newDuck).css({'position': 'absolute', 'z-index': '3'});
-  animateDuck();
-  var quack = new Audio('./audio/quack.wav');
-  quack.play();
+
+function createUfo(){
+  const newUfo = $('<div class="Ufo" id="target"></div>');
+  $('.bg').append(newUfo).find(newUfo).css({'position': 'absolute', 'z-index': '3'});
+  animateUfo();
+  ufo.play();
 }
-function animateDuck() {
-  var newq = makeNewPosition();
-  var oldq = $('.duck').offset();
-  var speed = calcSpeed([oldq.top, oldq.left], newq);
-  $('.duck').animate({ top: newq[0], left: newq[1] }, {
+
+
+
+function animateUfo() {
+  const newq = makeNewPosition();
+  const oldq = $('.Ufo').offset();
+  const speed = calcSpeed([oldq.top, oldq.left], newq);
+  $('.Ufo').animate({ top: newq[0], left: newq[1] }, {
     duration: speed,
-    complete: animateDuck
+    complete: animateUfo
   });
 }
+
 function calcSpeed(prev, next) {
-  var x = Math.abs(prev[1] - next[1]);
-  var y = Math.abs(prev[0] - next[0]);
-  var greatest = x > y ? x : y;
-  var speedModifier = 0.1;
-  var speed = Math.ceil(greatest/speedModifier);
+  const x             = Math.abs(prev[1] - next[1]);
+  const y             = Math.abs(prev[0] - next[0]);
+  const greatest      = x > y ? x : y;
+  const speedModifier = 0.1;
+  const speed         = Math.ceil(greatest/speedModifier);
+  console.log(speed);
   return speed;
+
 }
 
-
-
-
-
-
-// function rotateImage(){
-//   $('#target').fadeOut('fast', function(){
-//     $(this).attr('src', images[index]);
-//     $(this).fadeIn('fast', function(){
-//       if (index === images.length-1)  {
-//         index = 0;
-//       }  else  {
-//         index++;
-//       }
-//     });
-//   });
-// }
+function nuke(){
+  explosion.play();
+  intro.pause();
+  ufo.pause();
+  $('.planet').css({'display': 'none'});
+  $('.Ufo').css({'display': 'none'});
+  $('.bg').off('click', '.Ufo', UfoClicked);
+  $('.shotTotal').css({'display': 'none'});
+  $('.bomb').css({'display': 'block'});
+  $('.grass').css({'display': 'none'});
+  clearInterval(ufoIntervals);
+}

@@ -9,16 +9,17 @@ $(function(){
   intro.play();
   $('.startButton').on('click', animateDiv);
   $('.restart').on('click', restartButton);
-  $('.bg').on('click', '.duck', duckClicked);
+  $('.bg').on('click', '.Ufo', UfoClicked);
+  $('.buttonNuke').on('click', nuke);
 
 });
 function restartButton(){
   location.reload();
 }
-function duckClicked() {
+function UfoClicked() {
   $(this).remove();
   appendScore();
-  console.log('Clicked that duck yo');
+  console.log('Clicked that Ufo yo');
 }
 
 
@@ -30,15 +31,15 @@ function appendScore() {
 function shotMiss(){
   MissingShot--;
   console.log('ammo used');
-  var shotgun = new Audio('./audio/shot.mp3');
-  shotgun.play();
+  var laser = new Audio('./audio/laser.mp3');
+  laser.play();
   $('.shotTotal').text(MissingShot);
   if (MissingShot===0){
     var fail = new Audio('./audio/fail.mp3');
     fail.play();
-    $('.tree').css({'display': 'none'});
-    $('.duck').css({'display': 'none'});
-    $('.bg').off('click', '.duck', duckClicked);
+    $('.planet').css({'display': 'none'});
+    $('.Ufo').css({'display': 'none'});
+    $('.bg').off('click', '.Ufo', UfoClicked);
     $('.lost').css({'display': 'block','z-index': '20'});
     $('.shotTotal').css({'display': 'none'});
   }
@@ -56,26 +57,27 @@ function animateDiv(){
   var start = new Audio('./audio/start.wav');
   start.play();
   $('.bg').on('click',shotMiss);
-  var noOfDucks = 10000;
-  var duckIntervals = setInterval(createDuck, 1000);
+  var noOfUfos = 10000;
+  var UfoIntervals = setInterval(createUfo, 1000);
   setTimeout(function() {
-    clearInterval(duckIntervals);
-  }, noOfDucks);
+    clearInterval(UfoIntervals);
+  }, noOfUfos);
+
 }
-function createDuck(){
-  var newDuck = $('<div class="duck" id="target"></div>');
-  $('.bg').append(newDuck).find(newDuck).css({'position': 'absolute', 'z-index': '3'});
-  animateDuck();
-  var quack = new Audio('./audio/quack.wav');
-  quack.play();
+function createUfo(){
+  var newUfo = $('<div class="Ufo" id="target"></div>');
+  $('.bg').append(newUfo).find(newUfo).css({'position': 'absolute', 'z-index': '3'});
+  animateUfo();
+  var ufo = new Audio('./audio/ufo.mp3');
+  ufo.play();
 }
-function animateDuck() {
+function animateUfo() {
   var newq = makeNewPosition();
-  var oldq = $('.duck').offset();
+  var oldq = $('.Ufo').offset();
   var speed = calcSpeed([oldq.top, oldq.left], newq);
-  $('.duck').animate({ top: newq[0], left: newq[1] }, {
+  $('.Ufo').animate({ top: newq[0], left: newq[1] }, {
     duration: speed,
-    complete: animateDuck
+    complete: animateUfo
   });
 }
 function calcSpeed(prev, next) {
@@ -87,20 +89,14 @@ function calcSpeed(prev, next) {
   return speed;
 }
 
+function nuke(){
+  var explosion = new Audio('./audio/explosion.mp3');
+  explosion.play();
+  $('.planet').css({'display': 'none'});
+  $('.Ufo').css({'display': 'none'});
+  $('.bg').off('click', '.Ufo', UfoClicked);
+  $('.shotTotal').css({'display': 'none'});
+  $('.bomb').css({'display': 'block'});
+  $('.grass').css({'display': 'none'});
 
-
-
-
-
-// function rotateImage(){
-//   $('#target').fadeOut('fast', function(){
-//     $(this).attr('src', images[index]);
-//     $(this).fadeIn('fast', function(){
-//       if (index === images.length-1)  {
-//         index = 0;
-//       }  else  {
-//         index++;
-//       }
-//     });
-//   });
-// }
+}

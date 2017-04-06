@@ -1,22 +1,22 @@
 body{
-  background-color: red;
+  background-image: url('../img/full.jpg');
   margin-top: 20px;
   text-align: center;
 }
 .bg {
   border-radius: 20px;
+  border:5px red solid;
   width: 700px;
   height: 500px;
   position: relative;
-  background-image:url('../img/bg.jpg');
-  background-repeat: no-repeat;
+  background-image:url('../img/bg.gif');
   background-position: center;
   margin: auto;
   overflow: hidden;
   cursor:url('../img/crosshair.png'), auto;
 }
-.duck {
-  background-image: url('../img/duck.png');
+.Ufo {
+  background-image: url('../img/ufo.gif');
   width: 80px;
   height: 80px;
   position: absolute;
@@ -26,32 +26,21 @@ body{
   left : 650px;
   top: 150px;
 }
-
-/*.saus {
-background-image: url('../img/roast.png');
-width: 80px;
-height: 80px;
-position: absolute;
-z-index: 10;
-background-repeat: no-repeat;
-background-size: contain;
-display: none;
-}*/
 .score{
-  color: white;
-  border: 2px solid white;
-  padding: 10px;
-  width:30px;
+  color: red;
+  top: 155px;
+  left: 190px;
+  position: absolute;
+  font-size: 40px;
+  font-family: 'Revalia', cursive;
 }
 .lost{
-  /*background-color: blue;*/
+  color: red;
   font-size: 100px;
   z-index: 10px;
   display: none;
-  
 }
-.tree{
-  background-image: url('../img/tree.png');
+.planet{
   width: 160px;
   height: 200px;
   position: absolute;
@@ -59,15 +48,13 @@ display: none;
   background-repeat: no-repeat;
   background-size:contain;
 }
-#tree1{
-  left : 300px;
-  top: 117px;
-}
-#tree2{
+#saturn{
+  background-image: url('../img/saturn.png');
   left : 500px;
   top: 120px;
 }
-#tree3{
+#venus{
+  background-image: url('../img/venus.png');
   left : 100px;
   top: 107px;
 }
@@ -82,49 +69,92 @@ display: none;
   left: 0;
   top: 381px;
 }
-h5{
-  position: absolute;
-  padding-left: 10px;
-  color:white;
-  margin: auto;
-}
-.shotTotal{
-  position: absolute;
-  padding-left: 10px;
-  color:white;
-}
-.bullet{
-  background-image: url('../img/bullet.png');
-  width: 30px;
-  height: 30px;
-  left: 6px;
-  top: 9px;
+.DeadUfo{
+  background-image: url('../img/ufo.gif');
+  width: 60px;
+  height: 60px;
+  left: 127px;
+  top: 163px;
   background-repeat: no-repeat;
   background-size:contain;
   position: absolute;
 }
-.main{
-  display: inline-block;
-  background-color: white;
+.shotTotal{
+  position: absolute;
+  padding-left: 10px;
+  color:red;
+  left:170px;
+  top: 65px;
+  font-size: 40px;
+  font-family: 'Revalia', cursive;
+}
+.bullet{
+  background-image: url('../img/bullet.png');
+  width: 50px;
+  height: 50px;
+  left: 127px;
+  top: 72px;
+  background-repeat: no-repeat;
+  background-size:contain;
+  position: absolute;
 }
 
 
-
 .startButton{
+  background-color: red;
+  font-size: 30px;
   font-family: 'VT323', monospace;
-  width : 100px;
-  height : 20px;
+  width : 300px;
+  height : 50px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-family: 'Revalia', cursive;
+}
+.startButton:hover{
+  background-color: green;
 
 }
 
 
 .restart{
   position: absolute;
-  top: 42px;
-  left: 48%;
+  top: 350px;
+  left: 140px;
   background-image: url('../img/restart.png');
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background-repeat: no-repeat;
   background-size: contain;
+}
+.nuke{
+  color: red;
+  position: absolute;
+  font-family: 'Revalia', cursive;
+  font-size: 20px;
+  top: 290px;
+  left: 60px
+}
+.buttonNuke{
+  background-image: url('../img/nukeButton.png');
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 130px;
+  top:240px;
+
+}
+.buttonNuke:hover{
+  border: 4px solid red;
+  border-radius: 100px;
+}
+.bomb{
+  background-image: url('../img/nuclear.gif');
+  z-index: 10px;
+  width: 100%;
+  height:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
 }

@@ -1,121 +1,123 @@
 var game = game || {};
 
-let playerScore = 0;
-let missedShot  = 10;
-let ufoIntervals;
-const intro     = new Audio('./audio/intro.mp3');
-const laser     = new Audio('./audio/laser.mp3');
-const start     = new Audio('./audio/start.wav');
-const explosion = new Audio('./audio/explosion.mp3');
-const ufo       = new Audio('./audio/ufo.mp3');
-const fail      = new Audio('./audio/fail.mp3');
-const blast      = new Audio('./audio/blast.mp3');
+game.playerScore = 0;
+game.missedShot  = 20;
+game.ufoIntervals;
+game.intro     = new Audio('./audio/intro.mp3');
+game.laser     = new Audio('./audio/laser.mp3');
+game.start     = new Audio('./audio/start.wav');
+game.explosion = new Audio('./audio/explosion.mp3');
+game.ufo       = new Audio('./audio/ufo.mp3');
+game.fail      = new Audio('./audio/fail.mp3');
+game.blast      = new Audio('./audio/blast.mp3');
 
-$(function(){
-  intro.play();
-  addEventListeners();
-});
+game.init = function(){
+  game.intro.play();
+  game.addEventListeners();
+};
 
-function addEventListeners() {
-  $('.restart').on('click', restartButton);
-  $('.bg').on('click', '.Ufo', UfoClicked);
-  $('.bg').on('click', shotMiss);
-  $('.buttonNuke').on('click', nuke);
-  $('.startButton').on('click', animateDiv);
+game.addEventListeners= function() {
+  $('.restart').on('click', game.restartButton);
+  $('.bg').on('click', '.Ufo', game.UfoClicked);
+  $('.bg').on('click', game.shotMiss);
+  $('.buttonNuke').on('click', game.nuke);
+  $('.startButton').on('click', game.animateDiv);
   $('speed').on('click');
-}
+};
 
-function restartButton(){
-  intro.play();
-  fail.pause();
-  start.pause();
-  explosion.pause();
-  ufo.pause();
+game.restartButton = function (){
+  game.intro.play();
+  game.fail.pause();
+  game.start.pause();
+  game.explosion.pause();
+  game.ufo.pause();
   $('.planet').css({'display': 'block'});
   $('.Ufo').css({'display': 'none'});
-  $('.shotTotal').html('10');
+  $('.shotTotal').html('20');
   $('.score').html('0');
   $('.lost').css({'display': 'block'});
   $('.shotTotal').css({'display': 'block'});
   $('.bomb').css({'display': 'none'});
   $('.lost').css({'display': 'none'});
   $('.grass').css({'display': 'block'});
-  clearInterval(ufoIntervals);
-  missedShot  = 10;
-  playerScore = 0;
+  clearInterval(game.ufoIntervals);
+  game.missedShot  = 20;
+  game.playerScore = 0;
   // $('.restart').on('click', restartButton);
-  $('.bg').off('click', '.Ufo', UfoClicked);
-  $('.bg').off('click', shotMiss);
+  $('.bg').off('click', '.Ufo', game.UfoClicked);
+  $('.bg').off('click', game.shotMiss);
   // $('.buttonNuke').on('click', nuke);
-  $('.startButton').off('click', animateDiv);
+  $('.startButton').off('click', game.animateDiv);
   // $('speed').on('click');
-  addEventListeners();
-}
+  game.addEventListeners();
+};
 
-function UfoClicked() {
-  blast.play();
+game.UfoClicked =function() {
+  game.blast.play();
   $(this).remove();
-  appendScore();
+  game.appendScore();
   console.log('Clicked that Ufo yo');
-}
+};
 
-function appendScore() {
-  playerScore++;
-  $('.score').text(playerScore);
-}
+game.appendScore = function () {
+  game.playerScore++;
+  $('.score').text(game.playerScore);
+};
 
-function shotMiss(){
-  missedShot--;
+game.shotMiss = function (){
+  game.missedShot--;
   console.log('ammo used');
-  laser.play();
-  $('.shotTotal').text(missedShot);
-  if (missedShot===0) {
-    fail.play();
+  game.laser.play();
+  $('.shotTotal').text(game.missedShot);
+  if (game.missedShot===0) {
+    game.fail.play();
     $('.planet').css({'display': 'none'});
     $('.Ufo').css({'display': 'none'});
-    $('.bg').off('click', '.Ufo', UfoClicked);
+    $('.bg').off('click', '.Ufo', game.UfoClicked);
     $('.lost').css({'display': 'block','z-index': '20'});
     $('.shotTotal').css({'display': 'none'});
-    clearInterval(ufoIntervals);
+    clearInterval(game.ufoIntervals);
   }
-}
+};
 
-function makeNewPosition(){
+game.makeNewPosition = function (){
   const height  = $(window).height()-100;
   const width   = $(window).width() - 100;
   const nheight = Math.floor(Math.random() * height);
   const nwidth  = Math.floor(Math.random() * width);
   return [nheight,nwidth];
-}
+};
 
-function animateDiv(){
-  intro.pause();
-  start.play();
+game.animateDiv= function (){
+  game.intro.pause();
+  game.start.play();
   console.log('clicked');
   // $('.bg').on('click', shotMiss);
-  ufoIntervals = setInterval(createUfo, 1000);
-}
+  game.ufoIntervals = setInterval(game.createUfo, 1000);
+};
 
-function createUfo(){
+game.createUfo = function (){
   const newUfo = $('<div class="Ufo" id="target"></div>');
   $('.bg').append(newUfo).find(newUfo).css({'position': 'absolute', 'z-index': '3'});
-  animateUfo();
-  ufo.play();
-}
+  game.animateUfo();
+  game.ufo.play();
+};
 
+// game.animateUfo = function() {
+//   game.newq = makeNewPosition();
+// }
 
-
-function animateUfo() {
-  const newq = makeNewPosition();
+game.animateUfo =function () {
+  const newq = game.makeNewPosition();
   const oldq = $('.Ufo').offset();
-  const speed = calcSpeed([oldq.top, oldq.left], newq);
+  const speed = game.calcSpeed([oldq.top, oldq.left], newq);
   $('.Ufo').animate({ top: newq[0], left: newq[1] }, {
     duration: speed,
-    complete: animateUfo
+    complete: game.animateUfo
   });
-}
+};
 
-function calcSpeed(prev, next) {
+game.calcSpeed= function (prev, next) {
   const x             = Math.abs(prev[1] - next[1]);
   const y             = Math.abs(prev[0] - next[0]);
   const greatest      = x > y ? x : y;
@@ -124,17 +126,19 @@ function calcSpeed(prev, next) {
   console.log(speed);
   return speed;
 
-}
+};
 
-function nuke(){
-  explosion.play();
-  intro.pause();
-  ufo.pause();
+game.nuke=function (){
+  game.explosion.play();
+  game.intro.pause();
+  game.ufo.pause();
   $('.planet').css({'display': 'none'});
   $('.Ufo').css({'display': 'none'});
-  $('.bg').off('click', '.Ufo', UfoClicked);
+  $('.bg').off('click', '.Ufo', game.UfoClicked);
   $('.shotTotal').css({'display': 'none'});
   $('.bomb').css({'display': 'block'});
   $('.grass').css({'display': 'none'});
-  clearInterval(ufoIntervals);
-}
+  clearInterval(game.ufoIntervals);
+};
+
+$(game.init.bind(game));

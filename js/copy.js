@@ -1,7 +1,7 @@
 var game = game || {};
 
 game.playerScore = 0;
-game.missedShot  = 3;
+game.missedShot  = 20;
 game.ufoIntervals;
 game.intro     = new Audio('./audio/intro.mp3');
 game.laser     = new Audio('./audio/laser.mp3');
@@ -33,7 +33,7 @@ game.restartButton = function (){
   game.ufo.pause();
   $('.planet').css({'display': 'block'});
   $('.Ufo').css({'display': 'none'});
-  $('.shotTotal').html('10');
+  $('.shotTotal').html('20');
   $('.score').html('0');
   $('.lost').css({'display': 'block'});
   $('.shotTotal').css({'display': 'block'});
@@ -41,7 +41,7 @@ game.restartButton = function (){
   $('.lost').css({'display': 'none'});
   $('.grass').css({'display': 'block'});
   clearInterval(game.ufoIntervals);
-  game.missedShot  = 30;
+  game.missedShot  = 20;
   game.playerScore = 0;
   // $('.restart').on('click', restartButton);
   $('.bg').off('click', '.Ufo', game.UfoClicked);

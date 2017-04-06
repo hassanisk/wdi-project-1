@@ -160,3 +160,15 @@ body{
   background-size: cover;
   display: none;
 }
+
+a{
+  position: relative;
+  text-decoration: none;
+  color: white;
+  left: 400px;
+}
+.level{
+  color: yellow;
+  font-size: 30px;
+  display: none;
+}

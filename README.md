@@ -16,13 +16,14 @@ This is the main interface when the game starts. The grid with the planets are i
 <img width="476" alt="screen shot 2017-03-21 at 15 34 30" src="http://i.imgur.com/rXO3wCO.jpg"><br>
 Once the game has started, UFOs will start to spawn from the right side of the grid. Once clicked inside the grid,the amount of ammos will minus 1 but the score will add 1 only when an UFO is eliminated.
 Clicking on UFOs would eliminate them, but not when they are located behind the planets or the grass.
+If player's score reaches 5 the speed of the ufo will increase, as well at score of 10.
 
 ###End
 
 <img width="476" alt="screen shot 2017-03-21 at 15 34 30" src="http://i.imgur.com/DJwhbKa.jpg"><br>
 The game will end when the player ran out of ammo. Player could press on the hazard button to nuke the whole galaxy! A restart button could be used to reset.
 ##Further Work
-I would like to include more levels with a higher UFO speed and a timer for each level.
+I would like to include more levels with a higher UFO speed and a timer for each level. At the moment there is no indication between the difference of the levels. A message should be added.
 Make it responsive since this version is not mobile friendly.
 
 ##Tools

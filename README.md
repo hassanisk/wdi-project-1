@@ -1,11 +1,8 @@
 #WDI-Project-1
 
-Welcome to **"Alien Attack"** web application game. First project for *WDI-LONDON*
-
-
+Welcome to **"Alien Attack"** web application game. First project for *WDI-LONDON* **Alien Attack** can be found [here] (https://alienattack.herokuapp.com/).
 ##Introduction
-**"Alien Attack"** is a one player shooting game based on the famous **Duck-Hunt** game. **Duck-Hunt** first released in Japan on April 21, 1984. Using JavaScript, I recreated this game for my first project after 3 weeks  at General Assembly (Web Development Immersive course). A hosted version of **Alien Attack** can be found [here] (https://secure-plateau-53161.herokuapp.com/) The code can be viewed [here] (https://github.com/hassanisk/wdi-project-1).
-
+**"Alien Attack"** is a one player shooting game based on the famous **Duck-Hunt** game. **Duck-Hunt** first released in Japan on April 21, 1984. Using JavaScript, I recreated this game for my first project after 3 weeks  at General Assembly (Web Development Immersive course).
 ##How To PLAY
 ###Main
 

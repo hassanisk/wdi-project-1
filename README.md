@@ -1,27 +1,28 @@
 #WDI-Project-1
 
-Welcome to **"Alien Attack"** web application game. First project for *WDI-LONDON* **Alien Attack** can be found [here] (https://alienattack.herokuapp.com/).
+Welcome to the **"Alien Attack"** web application game. This is the first project for *WDI-LONDON*.<br>
+A hosted version can be found [here] (https://alienattack.herokuapp.com/). The code can be viewed [here] (https://github.com/hassanisk/wdi-project-1).
 ##Introduction
-**"Alien Attack"** is a one player shooting game based on the famous **Duck-Hunt** game. **Duck-Hunt** first released in Japan on April 21, 1984. Using JavaScript, I recreated this game for my first project after 3 weeks  at General Assembly (Web Development Immersive course).
+**"Alien Attack"** is a one player shooting game based on the famous game **Duck-Hunt**. **Duck-Hunt** was first released in Japan on April 21, 1984. Using JavaScript, I recreated this game for my first project, after only 3 weeks at General Assembly (Web Development Immersive course).
 ##How To PLAY
 ###Main
 
 <img width="476" alt="screen shot 2017-03-21 at 15 34 30" src="http://i.imgur.com/8DgzUWJ.jpg"> <br>
-This is the main interface when the game starts. The grid with the planets are is the main body where the game will actually happen. The red start button on top is used to start the game. The amount of ammo, score and restart option are located on the left side of the grid. 
+This is the main interface once the game starts. The grid, where the planets are located, is the main area where the game happens. The red start button on top is used to start the game. The amount of ammunition, score and restart option are located on the left-hand side of the grid. 
 ###Start
 
 <img width="476" alt="screen shot 2017-03-21 at 15 34 30" src="http://i.imgur.com/rXO3wCO.jpg"><br>
-Once the game has started, UFOs will start to spawn from the right side of the grid. Once clicked inside the grid,the amount of ammos will minus 1 but the score will add 1 only when an UFO is eliminated.
-Clicking on UFOs would eliminate them, but not when they are located behind the planets or the grass.
-If player's score reaches 5 the speed of the ufo will increase, as well at score of 10.
+When the game starts, UFOs will appear from the right hand side of the grid. When the player clicks inside the grid, their ammunition will decrease by 1, but the player's score will only increase by a point when a UFO is eliminated.
+The player can 'eliminate' a UFOs by clicking on it, but they will not be able to do this when the UFOs are located behind the planets or the grass.
+If a player's score reaches 5, then the speed of the UFOs will increase. This will also happen when the player's score reaches 10.
 
 ###End
 
 <img width="476" alt="screen shot 2017-03-21 at 15 34 30" src="http://i.imgur.com/DJwhbKa.jpg"><br>
-The game will end when the player ran out of ammo. Player could press on the hazard button to nuke the whole galaxy! A restart button could be used to reset.
+The game will end when the player runs out of ammunition. The player can press on the hazard button to detonate a nuclear weapon, which will destroy the whole galaxy! The restart button can then be used to reset the game.
 ##Further Work
-I would like to include more levels with a higher UFO speed and a timer for each level. At the moment there is no indication between the difference of the levels. A message should be added.
-Make it responsive since this version is not mobile friendly.
+I would like to add further levels with a higher UFO speed and a timer for each level. At the moment, there is no indication of different levels. A message should be added, telling the player that they have reached a new level.
+I would like to make it responsive since this version is not mobile friendly.
 
 ##Tools
 
